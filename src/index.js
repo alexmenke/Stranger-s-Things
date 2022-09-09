@@ -22,6 +22,7 @@ import {
     NewPost,
     SinglePostView,
     SendMessage,
+    Search,
 } from './components';
 import { CssBaseline } from '@mui/material';
 // import Toolbar from "@material-ui/core/Toolbar";

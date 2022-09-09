@@ -7,3 +7,4 @@ export { default as Login } from './Login';
 export { default as NewPost } from './NewPost';
 export { default as SinglePostView } from './SinglePostView';
 export { default as SendMessage } from './SendMessage';
+export { default as Search } from './Search';
