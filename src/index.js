@@ -21,8 +21,9 @@ import {
     Login,
     NewPost,
     SinglePostView,
+    SendMessage,
 } from './components';
-// import { CssBaseline } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 // import Toolbar from "@material-ui/core/Toolbar";
 // import AppBar from "@material-ui/core/AppBar";
 // import Typography from "@material-ui/core/Typography";
@@ -76,29 +77,6 @@ const App = () => {
 
     return (
         <div>
-            {/* <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        edge="start"
-                        style={{
-                            marginRight: 20,
-                        }}
-                        color="inherit"
-                        aria-label="menu"
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        style={{
-                            flexGrow: 1,
-                        }}
-                    >
-                        Dashboard
-                    </Typography>
-                    <Button color="inherit">Logout</Button>
-                </Toolbar>
-            </AppBar> */}
             <Navbar logout={logout} token={token} />
             <Routes>
                 <Route
@@ -106,31 +84,38 @@ const App = () => {
                     element={<Home />} />
                 <Route
                     path='/posts'
-                    element={<Posts posts={posts} token={token} />} />
+                    element={<Posts
+                        posts={posts}
+                        token={token} />} />
                 <Route
                     exact path='/posts/new-post'
-                    element={<NewPost token={token} navigate={navigate} />} />
+                    element={<NewPost
+                        token={token}
+                        navigate={navigate} />} />
+                <Route
+                    exact path='/posts/new-message'
+                    element={<SendMessage
+                        token={token}
+                        navigate={navigate} />} />
                 <Route
                     path='/posts/:postID'
-                    element={<SinglePostView posts={posts} />} />
+                    element={<SinglePostView
+                        posts={posts} />} />
                 <Route
                     path='/profile'
-                    element={<Profile user={user} />} />
+                    element={<Profile
+                        user={user} />} />
                 <Route
                     path='/register'
                     element={<Register
                         setToken={setToken}
                         token={token}
-                        navigate={navigate}
-                    />}
-                />
+                        navigate={navigate} />} />
                 <Route
                     path='/login'
                     element={<Login
                         setToken={setToken}
-                        navigate={navigate}
-                    />}
-                />
+                        navigate={navigate} />} />
             </Routes>
         </div>
     )

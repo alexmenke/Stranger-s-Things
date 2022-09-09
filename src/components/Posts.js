@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { deletePost } from '../api';
+import { Card, CardContent, CardActions } from '@mui/material';
+import styles from '../style.css';
 
 
 const Posts = ({ posts, token }) => {
@@ -19,20 +21,32 @@ const Posts = ({ posts, token }) => {
         posts.map((post) => {
           const { description, location, price, title, willDeliver, _id, isAuthor } = post;
           return (
-            <div key={_id}>
-              <h3>{title}</h3>
-              <p>Description: {description}</p>
-              <p>Price: {price}</p>
-              <p>Location: {location}</p>
-              <p>Delivery: {willDeliver}</p>
-              {
-                isAuthor ? (
-                  <button onClick={() => deletePost(token, _id)}>Delete</button>
-                ) : (
-                  <Link to={`/posts/${_id}`}><button>View</button></Link>
-                )
-              }
-            </div>
+            <Card
+              className={styles.singlePost}
+              key={_id}>
+              <CardContent>
+                <h3>{title}</h3>
+                <p>Description: {description}</p>
+                <p>Price: {price}</p>
+                <p>Location: {location}</p>
+                <p>Delivery: {willDeliver}</p>
+              </CardContent>
+              <CardActions>
+                {
+                  isAuthor ? (
+                    <>
+                    <Link to={`/posts/${_id}`}><button>View Post</button></Link>
+                    <Link to={`/posts`}><button onClick={() => deletePost(token, _id)}>Delete</button></Link>
+                    </>
+                    ) : (
+                    <>
+                      <Link to={`/posts/${_id}`}><button>View Post</button></Link>
+                      <Link to={`/posts/new-message`}><button>Send Message</button></Link>
+                    </>
+                  )
+                }
+              </CardActions>
+            </Card>
           )
         })
       }
