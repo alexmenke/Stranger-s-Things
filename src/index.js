@@ -101,7 +101,8 @@ const App = () => {
                 <Route
                     path='/posts/:postID'
                     element={<SinglePostView
-                        posts={posts} />} />
+                        posts={posts}
+                        token={token} />} />
                 <Route
                     path='/profile'
                     element={<Profile
