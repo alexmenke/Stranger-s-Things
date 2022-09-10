@@ -34,17 +34,9 @@ const Posts = ({ posts, token }) => {
               <CardActions>
                 {
                   isAuthor ? (
-                    <>
-                      <Link to={`/posts/${_id}`}><button>View Post</button></Link>
-                      <Link to={`/posts`}><button onClick={() => deletePost(token, _id)}>Delete</button></Link>
-                    </>
+                      <Link to={`/posts/edit-post/${_id}`}><button>Edit Post</button></Link>
                   ) : (
-                    <>
                       <Link to={`/posts/${_id}`}><button>View Post</button></Link>
-                      if(token) (
-                        <Link to={`/posts/new-message`}><button>Send Message</button></Link>
-                      )
-                    </>
                   )
                 }
               </CardActions>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { addNewPost } from '../api';
 
 
-const NewPost = ({ token, navigate }) => {
+const NewPost = ({ token, navigate, fetchPosts }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -12,9 +12,10 @@ const NewPost = ({ token, navigate }) => {
   const addPost = async () => {
     const results = await addNewPost(token, {title, description, price, location, willDeliver});
     if (results.success) {
+      fetchPosts();
       navigate('/posts');
     } else {
-      console.log(results.error.message)
+      alert('Error creating new post, please try again.')
     }
   }
   
@@ -44,11 +45,10 @@ const NewPost = ({ token, navigate }) => {
       />
       <label>Will Deliver?</label>
       <input 
-        type='checkbox'
-        placeholder='Yes'
-        onChange={(event) => setWillDeliver(event.target.check)}
-        // matthew did options of yes and no
-      />
+          type='checkbox'
+          checked=''
+          onChange={(event) => setWillDeliver(event.target.check)}
+        />
       <button onClick={() => addPost()}>Create New Post</button>
     </form>
   )

@@ -21,7 +21,7 @@ const Login = ({ setToken, navigate }) => {
       window.localStorage.setItem('token', results.data.token);
       navigate('/profile');
     } else {
-      alert('Username or password is incorrect, please try again.')
+      console.log(error.message)
     }
   }
 

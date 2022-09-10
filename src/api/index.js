@@ -124,3 +124,28 @@ export const deletePost = async (token, _id) => {
   }
 }
 
+export const updatePost = async ({ token, title, description, price, location, willDeliver, _id }) => {
+  try {
+    const response = await fetch(`${baseURL}/posts/${_id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          location: location,
+          willDeliver: willDeliver
+        }
+      })
+    })
+    const result = response.json();
+    return result
+
+  } catch (ex) {
+    console.log('Error updating post.')
+  }
+}

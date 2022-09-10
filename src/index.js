@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 /* we only need ReactDOM once. All new components will need to import React*/
-import './style.css'
+import './style.css';
 import {
     getPosts,
     getUserInfo
-} from './api/index.js'
+} from './api/index.js';
 import {
     Route,
     BrowserRouter,
@@ -21,8 +21,8 @@ import {
     Login,
     NewPost,
     SinglePostView,
-    SendMessage,
     Search,
+    EditPost
 } from './components';
 import { CssBaseline } from '@mui/material';
 // import Toolbar from "@material-ui/core/Toolbar";
@@ -78,7 +78,9 @@ const App = () => {
 
     return (
         <div>
-            <Navbar logout={logout} token={token} />
+            <Navbar
+                logout={logout}
+                token={token} />
             <Routes>
                 <Route
                     path='/'
@@ -92,7 +94,15 @@ const App = () => {
                     exact path='/posts/new-post'
                     element={<NewPost
                         token={token}
-                        navigate={navigate} />} />
+                        navigate={navigate}
+                        fetchPosts={fetchPosts} />} />
+                <Route
+                    exact path='/posts/edit-post/:postID'
+                    element={<EditPost
+                        posts={posts} 
+                        token={token}
+                        fetchPosts={fetchPosts} />} />
+                    
                 <Route
                     exact path='/posts/new-message'
                     element={<SendMessage
