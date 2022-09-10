@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { updatePost } from '../api'
+import { deletePost, updatePost } from '../api'
 
 
 const EditPost = ({ posts, token, fetchPosts }) => {
@@ -63,7 +63,8 @@ const EditPost = ({ posts, token, fetchPosts }) => {
                 onChange={(event) => setNewWillDeliver(event.target.checked)}
             />
             <button type='submit'>Update</button>
-            <Link to={`/posts`}><button onClick={() => deletePost(token, _id)}>Delete</button></Link>
+            <button type='submit' onClick={() => deletePost(token, postID)}>Delete</button>
+
         </form>
     )
 }

@@ -102,12 +102,6 @@ const App = () => {
                         posts={posts} 
                         token={token}
                         fetchPosts={fetchPosts} />} />
-                    
-                <Route
-                    exact path='/posts/new-message'
-                    element={<SendMessage
-                        token={token}
-                        navigate={navigate} />} />
                 <Route
                     path='/posts/:postID'
                     element={<SinglePostView

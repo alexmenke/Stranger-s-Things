@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { deletePost } from '../api';
 import { Card, CardContent, CardActions } from '@mui/material';
 import styles from '../style.css';
 
@@ -34,7 +33,10 @@ const Posts = ({ posts, token }) => {
               <CardActions>
                 {
                   isAuthor ? (
+                    <>
                       <Link to={`/posts/edit-post/${_id}`}><button>Edit Post</button></Link>
+                      <Link to={`/posts/${_id}`}><button>View Post</button></Link>
+                    </>
                   ) : (
                       <Link to={`/posts/${_id}`}><button>View Post</button></Link>
                   )
