@@ -21,7 +21,6 @@ import {
     Login,
     NewPost,
     SinglePostView,
-    Search,
     EditPost
 } from './components';
 import { CssBaseline } from '@mui/material';
@@ -106,7 +105,8 @@ const App = () => {
                     path='/posts/:postID'
                     element={<SinglePostView
                         posts={posts}
-                        token={token} />} />
+                        token={token}
+                        getMe={getMe} />} />
                 <Route
                     path='/profile'
                     element={<Profile

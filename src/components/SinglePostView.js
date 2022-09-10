@@ -3,20 +3,18 @@ import { Link, useParams } from 'react-router-dom';
 import { Card, CardContent, CardActions } from '@mui/material';
 import { deletePost, createMessage } from '../api';
 
-const SendMessage = ({ postID, token }) => {
+const SendMessage = ({ postID, token, getMe }) => {
     const [message, setMessage] = useState({ content: '' });
 
     async function addMessage() {
         await createMessage({ postID, message, token })
     }
 
-    // we need three things to make this request. postID, token, message object containing the content of the message.
-
     return (
         <form onSubmit={(event) => {
             event.preventDefault();
             addMessage();
-            //will need to call the getMe function to populate the profile page with the new messages.
+            getMe();
         }}>
             <input
                 type='text'
@@ -32,57 +30,54 @@ const SinglePostView = ({ posts, token }) => {
     const [activateMessage, setActivateMessage] = useState(false)
     const { postID } = useParams();
 
-    const [currentPost] = posts.filter(post => post._id === postID);
+    if (posts.length) {
+        const [currentPost] = posts.filter(post => post._id === postID);
 
-    const { title, description, location, price, willDeliver, _id, isAuthor } = currentPost;
+        const { title, description, location, price, willDeliver, _id, isAuthor } = currentPost;
 
-    return (
-        <Card>
-            <CardContent>
-                <h3>{title}</h3>
-                <p>Description: {description}</p>
-                <p>Price: {price}</p>
-                <p>Location: {location}</p>
-                <p>Will Deliver: {willDeliver}</p>
-            </CardContent>
-            <CardActions>
-                {/* <button onClick={() => setActivateMessage(!activateMessage)}>Write a message</button>
-                {
-                    activateMessage && <SendMessage postID={postID} token={token} />
-                } */}
-                {
-                    // token &&
-                    isAuthor ? (
-                        <>
-                            <Link to={`/posts`}><button>View All</button></Link>
-                            <Link to={`/posts`}><button onClick={() => deletePost(token, _id)}>Delete</button></Link>
-                        </>
+        return (
+            <Card>
+                <CardContent>
+                    <h3>{title}</h3>
+                    <p>Description: {description}</p>
+                    <p>Price: {price}</p>
+                    <p>Location: {location}</p>
+                    <p>Will Deliver: {willDeliver}</p>
+                </CardContent>
+                <CardActions>
+                    {
 
-                    ) : (
-
-                             <>
+                        isAuthor ? (
+                            <>
                                 <Link to={`/posts`}><button>View All</button></Link>
-                                { token && 
-                                <>
-                                    <button onClick={() => setActivateMessage(!activateMessage)}>Write a message</button>
-                                  {
-                                     activateMessage && <SendMessage postID={postID} token={token} />
-                                 }
-                                 </>
+                                <Link to={`/posts`}><button onClick={() => deletePost(token, _id)}>Delete</button></Link>
+                            </>
+
+                        ) : (
+
+                            <>
+                                <Link to={`/posts`}><button>View All</button></Link>
+                                {token &&
+                                    <>
+                                        <button onClick={() => setActivateMessage(!activateMessage)}>Write a message</button>
+                                        {
+                                            activateMessage && <SendMessage postID={postID} token={token} />
+                                        }
+                                    </>
                                 }
                             </>
-            )
-                }
-            {/* {
-                    { token } ? (
+                        )
+                    }
 
-                    ) : (
+                </CardActions>
+            </Card >
+        )
+    } else {
+        return (
+            <h1>Waiting for post...</h1>
+        )
+    }
 
-                    )
-                } */}
-        </CardActions>
-        </Card >
-    )
 }
 
 export default SinglePostView;
