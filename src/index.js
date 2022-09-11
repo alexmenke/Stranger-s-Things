@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-/* we only need ReactDOM once. All new components will need to import React*/
 import './style.css';
 import {
     getPosts,
@@ -35,7 +34,6 @@ const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState('');
     const [user, setUser] = useState({});
-
     const navigate = useNavigate();
 
     function logout() {
@@ -98,7 +96,7 @@ const App = () => {
                 <Route
                     exact path='/posts/edit-post/:postID'
                     element={<EditPost
-                        posts={posts} 
+                        posts={posts}
                         token={token}
                         fetchPosts={fetchPosts} />} />
                 <Route
@@ -136,16 +134,3 @@ root.render(
         </CssBaseline>
     </BrowserRouter>
 )
-
-/* Components we will need for this project:
-Log in
-Registering new users
-Posts
-Profile
-Navigation bar
-Adding a post
-May need more or less as we build
-*/
-
-/* Homework: Create the "create post" form/component (check the api - POST /posts). Will need an authorized token in order to create a post.
-Create the profile page*/

@@ -21,7 +21,7 @@ const SendMessage = ({ postID, token, getMe }) => {
                 placeholder='Write message here'
                 onChange={(event) => setMessage({ content: event.target.value })}
             />
-            <button type='submit'>Send</button>
+            <Link to='/profile'><button type='submit'>Send</button></Link>
         </form>
     )
 }
@@ -32,7 +32,6 @@ const SinglePostView = ({ posts, token }) => {
 
     if (posts.length) {
         const [currentPost] = posts.filter(post => post._id === postID);
-
         const { title, description, location, price, willDeliver, _id, isAuthor } = currentPost;
 
         return (
@@ -46,15 +45,12 @@ const SinglePostView = ({ posts, token }) => {
                 </CardContent>
                 <CardActions>
                     {
-
                         isAuthor ? (
                             <>
                                 <Link to={`/posts`}><button>View All</button></Link>
                                 <Link to={`/posts`}><button onClick={() => deletePost(token, _id)}>Delete</button></Link>
                             </>
-
                         ) : (
-
                             <>
                                 <Link to={`/posts`}><button>View All</button></Link>
                                 {token &&
@@ -68,18 +64,15 @@ const SinglePostView = ({ posts, token }) => {
                             </>
                         )
                     }
-
                 </CardActions>
             </Card >
         )
     } else {
         return (
-            <h1>Waiting for post...</h1>
+            <h1>Loading post...</h1>
         )
     }
 
 }
 
 export default SinglePostView;
-
-//isLoggedIn with boolean. Change to true everyt

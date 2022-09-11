@@ -12,26 +12,25 @@ const Posts = ({ posts, token }) => {
 
     if ((title.toLowerCase().includes(string.toLowerCase())) || description.toLowerCase().includes(string.toLowerCase())) {
       return post;
-
     }
   }
 
   const filteredPosts = posts.filter(post => postMatches(post, searchTerm));
   const postsToDisplay = searchTerm.length ? filteredPosts : posts;
 
-  return (
-    <div id='outer div element'>
-      <form onSubmit={(event) => {
-        event.preventDefault();
-      }}>
-        <input
-          type='text'
-          placeholder='Enter search here...'
-          onChange={(event) => setSearchTerm(event.target.value)}>
-        </input>
-      </form>
+  if (postsToDisplay.length) {
+    return (
+      <div id='outer div element'>
+        <form onSubmit={(event) => {
+          event.preventDefault();
+        }}>
+          <input
+            type='text'
+            placeholder='Enter search here...'
+            onChange={(event) => setSearchTerm(event.target.value)}>
+          </input>
+        </form>
 
-      
         {
           token ? (
             <Link to='/posts/new-post'>
@@ -72,7 +71,13 @@ const Posts = ({ posts, token }) => {
           })
         }
       </div>
-  )
+    )
+  } else {
+    return (
+      <h1>Loading posts...</h1>
+    )
+  }
+
 }
 
 export default Posts;
