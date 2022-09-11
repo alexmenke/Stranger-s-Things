@@ -23,12 +23,6 @@ import {
     EditPost
 } from './components';
 import { CssBaseline } from '@mui/material';
-// import Toolbar from "@material-ui/core/Toolbar";
-// import AppBar from "@material-ui/core/AppBar";
-// import Typography from "@material-ui/core/Typography";
-// import IconButton from "@material-ui/core/IconButton";
-// import Button from "@material-ui/core/Button";
-// import MenuIcon from "@material-ui/icons/Menu";
 
 const App = () => {
     const [posts, setPosts] = useState([]);
