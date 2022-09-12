@@ -97,12 +97,12 @@ const App = () => {
                     path='/posts/:postID'
                     element={<SinglePostView
                         posts={posts}
-                        token={token}
-                        getMe={getMe} />} />
+                        token={token} />} />
                 <Route
                     path='/profile'
                     element={<Profile
-                        user={user} />} />
+                        user={user}
+                        getMe={getMe} />} />
                 <Route
                     path='/register'
                     element={<Register

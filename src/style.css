@@ -1,3 +1,125 @@
-.singlePost {
-    color: blue;
+.navLinks {
+    color: white;
 }
+
+.navLinks1 {
+    color: white;
+    padding: .70rem;
+}
+
+.postContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%
+} 
+
+.postHeader {
+    position: static;
+    margin: auto;
+    width:50%;
+    width: 50%;
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.postTitle {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.postInfo {
+    font-weight: bold;
+    font-size: 1.1rem
+}
+
+.searchBar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newPostButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profileHeading {
+    text-align: center;
+}
+
+.header {
+    left:0;
+    right:0;
+    font-size: 2rem;
+    position: static;
+    padding: .05rem 1em;
+    background: rgb(66 133 244);
+    overflow: auto;
+    box-shadow: 0 0 12px -2px rgb(170, 162, 135)
+  }
+
+
+    
+  header::after {
+    display: block;
+    clear: both;
+  }
+  
+  .companyName {
+    float: left;
+    font-weight: bold;
+    font-size: 35px;
+    padding-left: 7px;
+    padding-right: 7px;
+    color: rgb(255, 255, 254);
+  }
+  
+  /* .links {
+    float: right;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: inherit;
+    margin-left: .25em;
+  }
+  
+  .links a:first-of-type {
+    margin-left: 0;
+  }
+  
+  .links a.active {
+    border-bottom: 2px solid rgb(255, 255, 254);
+  } */
+
+  /* .links {
+    float: right;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: inherit;
+    margin-left: .25em;
+  }
+  
+  .links a:first-of-type {
+    margin-left: 0;
+  }
+  
+  .links a.active {
+    border-bottom: 2px solid rgb(255, 255, 254);
+  } */
+
+  .home {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+
+  }

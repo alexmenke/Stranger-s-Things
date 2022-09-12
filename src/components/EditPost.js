@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deletePost, updatePost } from '../api'
+import {
+    Grid,
+    Paper,
+    TextField,
+    Button
+  } from '@mui/material'
 
 
 const EditPost = ({ posts, token, fetchPosts }) => {
@@ -29,43 +35,32 @@ const EditPost = ({ posts, token, fetchPosts }) => {
         await updatePost(updatedPost);
     }
 
+    const paperStyle = {
+        padding: 20,
+        height: '70vh',
+        width: 300,
+        margin: '20px auto'
+      }
+
     return (
+        <Grid>
+        <Paper elevation={10} style={paperStyle}>
         <form onSubmit={(event) => {
             event.preventDefault();
             editPost();
             fetchPosts();
             navigate('/posts');
         }}>
-            <input
-                type='text'
-                placeholder={title}
-                onChange={(event) => setNewTitle(event.target.value)}
-            />
-            <input
-                type='text'
-                placeholder={description}
-                onChange={(event) => setNewDescription(event.target.value)}
-            />
-            <input
-                type='text'
-                placeholder={price}
-                onChange={(event) => setNewPrice(event.target.value)}
-            />
-            <input
-                type='text'
-                placeholder={location}
-                onChange={(event) => setNewLocation(event.target.value)}
-            />
-            <label>Will Deliver?</label>
-            <input
-                type='checkbox'
-                checked={newWillDeliver}
-                onChange={(event) => setNewWillDeliver(event.target.checked)}
-            />
-            <button type='submit'>Update</button>
-            <button type='submit' onClick={() => deletePost(token, postID)}>Delete</button>
-
-        </form>
+            <Grid align='center'><h2>Edit post</h2></Grid>
+            <TextField placeholder={title} fullWidth required onChange={(event) => setNewTitle(event.target.value)} />
+            <TextField placeholder={description} fullWidth required onChange={(event) => setNewDescription(event.target.value)} />
+            <TextField placeholder={price} fullWidth required onChange={(event) => setNewPrice(event.target.value)}/>
+            <TextField placeholder={location} fullWidth required onChange={(event) => setNewLocation(event.target.value)}/>
+            <Button type='submit' color='primary' variant='contained' fullWidth>Update</Button>
+            <Button type='submit' onClick={() => deletePost(token, postID)} color='primary' variant='contained' fullWidth>Delete</Button>
+          </form>
+        </Paper>
+      </Grid>
     )
 }
 

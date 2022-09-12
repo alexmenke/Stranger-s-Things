@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardActions } from '@mui/material';
+import {
+  Paper,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  TextField,
+} from '@mui/material';
 import styles from '../style.css';
 
 
@@ -18,55 +25,69 @@ const Posts = ({ posts, token }) => {
   const filteredPosts = posts.filter(post => postMatches(post, searchTerm));
   const postsToDisplay = searchTerm.length ? filteredPosts : posts;
 
+  const paperStyle = {
+    padding: 20,
+    width: 350,
+    margin: '20px auto'
+  }
+
   if (postsToDisplay.length) {
     return (
-      <div id='outer div element'>
-        <form onSubmit={(event) => {
-          event.preventDefault();
-        }}>
-          <input
-            type='text'
-            placeholder='Enter search here...'
-            onChange={(event) => setSearchTerm(event.target.value)}>
-          </input>
-        </form>
+      <div className='postContainer'>
+        <div className='postHeader'>
+          <form onSubmit={(event) => {
+            event.preventDefault();
+          }}>
+            <TextField
+              className='searchBar'
+              type='text'
+              placeholder='Enter search here...'
+              onChange={(event) => setSearchTerm(event.target.value)}>
+            </TextField>
+          </form>
 
-        {
-          token ? (
-            <Link to='/posts/new-post'>
-              <button>Create New Post</button>
-            </Link>
-          ) : (
-            <p><Link to='/register'>Register</Link> or <Link to='/login'>login</Link> to create a post.</p>
-          )
-        }
+          {
+            token ? (
+              <Link to='/posts/new-post'>
+                <Button className='newPostButton' variant='contained'>Create New Post</Button>
+              </Link>
+            ) : (
+              <p><Link to='/register'>Register</Link> or <Link to='/login'>login</Link> to create a post.</p>
+            )
+          }
+        </div>
+
         {
           postsToDisplay.map((post) => {
             const { description, location, price, title, willDeliver, _id, isAuthor } = post;
             return (
-              <Card
-                className={styles.singlePost}
+              <div className='posts'
                 key={_id}>
-                <CardContent>
-                  <h3>{title}</h3>
-                  <p>Description: {description}</p>
-                  <p>Price: {price}</p>
-                  <p>Location: {location}</p>
-                  <p>Delivery: {willDeliver}</p>
-                </CardContent>
-                <CardActions>
-                  {
-                    isAuthor ? (
-                      <>
-                        <Link to={`/posts/edit-post/${_id}`}><button>Edit Post</button></Link>
-                        <Link to={`/posts/${_id}`}><button>View Post</button></Link>
-                      </>
-                    ) : (
-                      <Link to={`/posts/${_id}`}><button>View Post</button></Link>
-                    )
-                  }
-                </CardActions>
-              </Card>
+                <Paper elevation={10} style={paperStyle}>
+                  <Card
+                    className={styles.singlePost}>
+                    <CardContent>
+                      <h3 className='postTitle'>{title}</h3>
+                      <p className='postInfo'>Description: {description}</p>
+                      <p className='postInfo'>Price: {price}</p>
+                      <p className='postInfo'>Location: {location}</p>
+                      <p className='postInfo'>Delivery: {willDeliver}</p>
+                    </CardContent>
+                    <CardActions>
+                      {
+                        isAuthor ? (
+                          <>
+                            <Link to={`/posts/edit-post/${_id}`}><Button>Edit Post</Button></Link>
+                            <Link to={`/posts/${_id}`}><Button>View Post</Button></Link>
+                          </>
+                        ) : (
+                          <Link to={`/posts/${_id}`}><Button>View Post</Button></Link>
+                        )
+                      }
+                    </CardActions>
+                  </Card>
+                </Paper>
+              </div>
             )
           })
         }
@@ -81,5 +102,3 @@ const Posts = ({ posts, token }) => {
 }
 
 export default Posts;
-
-//map through either all posts or map through all the filtered posts which are saved to a different variable.

@@ -1,50 +1,73 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {
+  Paper,
+  Card,
+  CardContent,
+} from '@mui/material';
 
-const Profile = ({ user }) => {
+const Profile = ({ user, getMe }) => {
   const messages = user.messages;
   const userID = user._id;
 
-  console.log(user)
+  const paperStyle = {
+    padding: 20,
+    width: 350,
+    margin: '20px auto'
+  }
+
+  useEffect(() => {
+    getMe();
+}, [])
 
   return (
-    <div>
-      <div>
-        <h1>Incoming:</h1>
-        {
-          messages && messages.map(message => {
-            const fromUserID = message.fromUser._id;
-            const { username } = message.fromUser;
-            const { title } = message.post;
+    <div className='messages'>
+      <h1 className='profileHeading'>Welcome, {user.username}</h1>
+      <div className='incomingMessages'>
+        <Paper elevation={10} style={paperStyle}>
+          <Card>
+            <CardContent>
+              <h1>Incoming:</h1>
+              {
+                messages && messages.map(message => {
+                  const fromUserID = message.fromUser._id;
+                  const { username } = message.fromUser;
+                  const { title } = message.post;
 
-            if (userID !== fromUserID) {
-              return (
-                <div key={message._id}>
-                  <p>From User: {username} </p>
-                  <p>Message: {message.content}</p>
-                  <p>Post Reference: {title}</p>
-                </div>
-              )
-            }
-          })
-        }
+                  if (userID !== fromUserID) {
+                    return (
+                      <div className='singleIncomingMessage' key={message._id}>
+                        <p>From User: {username} </p>
+                        <p>Referring to: {title}</p>
+                        <p>Message: {message.content}</p>
+                      </div>
+                    )
+                  }
+                })
+              }
+            </CardContent>
+          </Card>
+        </Paper>
+
       </div>
-      <div>
-        <h1>Outgoing:</h1>
-        {
-          messages && messages.map(message => {
-            const fromUserID = message.fromUser._id;
+      <div className='outgoingMessages'>
+        <Paper elevation={10} style={paperStyle}>
+          <Card>
+            <CardContent>
+              <h1>Outgoing:</h1>
+              {
+                messages && messages.map(message => {
+                  const fromUserID = message.fromUser._id;
 
-            if (userID === fromUserID) {
-              return (
-                <div key={message._id}>{message.content}
-                  {/* <p>To: {message.toUser._id} </p> */}
-                  {/* <p>Message: {message.content}</p>
-                  <p>Post Reference: {title}</p> */}
-                </div>
-              )
-            }
-          })
-        }
+                  if (userID === fromUserID) {
+                    return (
+                      <div key={message._id}>{message.content}</div>
+                    )
+                  }
+                })
+              }
+            </CardContent>
+          </Card>
+        </Paper>
       </div>
     </div>
   )

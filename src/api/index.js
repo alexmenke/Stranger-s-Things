@@ -162,7 +162,7 @@ export const createMessage = async ({postID, token, message}) => {
       message
      })
     })
-    const result = response.json();
+    const result = await response.json();
     return result
 
   } catch(ex) {
