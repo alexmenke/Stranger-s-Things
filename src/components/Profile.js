@@ -26,7 +26,7 @@ const Profile = ({ user, getMe }) => {
         <Paper elevation={10} style={paperStyle}>
           <Card>
             <CardContent>
-              <h1>Incoming:</h1>
+              <h1 className='messageHeaders'>Incoming Messages:</h1>
               {
                 messages && messages.map(message => {
                   const fromUserID = message.fromUser._id;
@@ -35,7 +35,7 @@ const Profile = ({ user, getMe }) => {
 
                   if (userID !== fromUserID) {
                     return (
-                      <div className='singleIncomingMessage' key={message._id}>
+                      <div key={message._id}>
                         <p>From User: {username} </p>
                         <p>Referring to: {title}</p>
                         <p>Message: {message.content}</p>
@@ -53,14 +53,20 @@ const Profile = ({ user, getMe }) => {
         <Paper elevation={10} style={paperStyle}>
           <Card>
             <CardContent>
-              <h1>Outgoing:</h1>
+              <h1 className='messageHeaders'>Outgoing Messages:</h1>
               {
                 messages && messages.map(message => {
                   const fromUserID = message.fromUser._id;
+                  const { username } = message.fromUser;
+                  const { title } = message.post;
 
                   if (userID === fromUserID) {
                     return (
-                      <div key={message._id}>{message.content}</div>
+                      <div key={message._id}>
+                        <p>From User: {username} </p>
+                        <p>Referring to: {title}</p>
+                        <p>Message: {message.content}</p>
+                      </div>
                     )
                   }
                 })

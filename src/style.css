@@ -1,125 +1,98 @@
-.navLinks {
-    color: white;
-}
-
-.navLinks1 {
-    color: white;
-    padding: .70rem;
-}
-
 .postContainer {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%
-} 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
 .postHeader {
-    position: static;
-    margin: auto;
-    width:50%;
-    width: 50%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 50%;
+  padding: 1rem;
+}
+
+.postLoadingMessage {
+  position: static;
+  margin: auto;
+  width: 50%;
+  width: 50%;
+  text-align: center;
 }
 
 .posts {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .postTitle {
-    text-align: center;
-    text-decoration: underline;
-    font-weight: bolder;
-    font-size: 1.3rem;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bolder;
+  font-size: 1.3rem;
 }
 
 .postInfo {
-    font-weight: bold;
-    font-size: 1.1rem
+  font-size: 1.1rem
+}
+
+.postButtons {
+  margin: auto;
 }
 
 .searchBar {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .newPostButton {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 12.2rem;
+  height: 3.5rem;
 }
 
 .profileHeading {
-    text-align: center;
+  text-align: center;
 }
 
 .header {
-    left:0;
-    right:0;
-    font-size: 2rem;
-    position: static;
-    padding: .05rem 1em;
-    background: rgb(66 133 244);
-    overflow: auto;
-    box-shadow: 0 0 12px -2px rgb(170, 162, 135)
-  }
+  left: 0;
+  right: 0;
+  font-size: 2rem;
+  position: static;
+  padding: .05rem 1em;
+  background: rgb(66 133 244);
+  overflow: auto;
+  box-shadow: 0 0 12px -2px rgb(170, 162, 135)
+}
 
+.companyName {
+  float: left;
+  font-weight: bold;
+  font-size: 35px;
+  padding-left: 7px;
+  padding-right: 7px;
+  color: rgb(255, 255, 254);
+}
 
-    
-  header::after {
-    display: block;
-    clear: both;
-  }
-  
-  .companyName {
-    float: left;
-    font-weight: bold;
-    font-size: 35px;
-    padding-left: 7px;
-    padding-right: 7px;
-    color: rgb(255, 255, 254);
-  }
-  
-  /* .links {
-    float: right;
-  }
-  
-  .links a {
-    text-decoration: none;
-    color: inherit;
-    margin-left: .25em;
-  }
-  
-  .links a:first-of-type {
-    margin-left: 0;
-  }
-  
-  .links a.active {
-    border-bottom: 2px solid rgb(255, 255, 254);
-  } */
+.home {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
 
-  /* .links {
-    float: right;
-  }
-  
-  .links a {
-    text-decoration: none;
-    color: inherit;
-    margin-left: .25em;
-  }
-  
-  .links a:first-of-type {
-    margin-left: 0;
-  }
-  
-  .links a.active {
-    border-bottom: 2px solid rgb(255, 255, 254);
-  } */
+.sendMessageButton {
+  height: 3.4rem;
+}
 
-  .home {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
+.messageHeaders {
+  text-align: center;
+  text-decoration: underline;
+}
 
-  }
+a:link {
+  text-decoration: none;
+}

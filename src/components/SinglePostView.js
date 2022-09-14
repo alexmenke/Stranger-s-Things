@@ -16,7 +16,7 @@ const SendMessage = ({ postID, token }) => {
     const navigate = useNavigate();
 
     async function addMessage() {
-        
+
         const response = await createMessage({ postID, message, token })
         console.log(response)
     }
@@ -32,7 +32,12 @@ const SendMessage = ({ postID, token }) => {
                 placeholder='Write message here'
                 onChange={(event) => setMessage({ content: event.target.value })}
             />
-            <Button variant='contained' type='submit'>Send</Button>
+            <Button
+                className='sendMessageButton'
+                variant='contained'
+                type='submit'>
+                Send
+            </Button>
         </form>
     )
 }
@@ -47,7 +52,7 @@ const SinglePostView = ({ posts, token }) => {
 
     if (posts.length) {
         const [currentPost] = posts.filter(post => post._id === postID);
-        const { title, description, location, price, willDeliver, _id, isAuthor } = currentPost;
+        const { title, description, location, price, _id, isAuthor } = currentPost;
 
         return (
             <Paper elevation={10} style={paperStyle}>
@@ -57,21 +62,36 @@ const SinglePostView = ({ posts, token }) => {
                         <p className='postInfo'>Description: {description}</p>
                         <p className='postInfo'>Price: {price}</p>
                         <p className='postInfo'>Location: {location}</p>
-                        <p className='postInfo'>Delivery: {willDeliver}</p>
                     </CardContent>
                     <CardActions>
                         {
                             isAuthor ? (
                                 <>
-                                    <Link to={`/posts`}><Button>View All</Button></Link>
-                                    <Link to={`/posts`}><Button onClick={() => deletePost(token, _id)}>Delete</Button></Link>
+                                    <Link to={`/posts`}>
+                                        <Button>
+                                            View All
+                                        </Button>
+                                    </Link>
+                                    <Link to={`/posts`}>
+                                        <Button
+                                            onClick={() => deletePost(token, _id)}>
+                                            Delete
+                                        </Button>
+                                    </Link>
                                 </>
                             ) : (
                                 <>
-                                    <Link to={`/posts`}><Button>View All</Button></Link>
+                                    <Link to={`/posts`}>
+                                        <Button>
+                                            View All
+                                        </Button>
+                                    </Link>
                                     {token &&
                                         <>
-                                            <Button onClick={() => setActivateMessage(!activateMessage)}>Write a message</Button>
+                                            <Button
+                                                onClick={() => setActivateMessage(!activateMessage)}>
+                                                Write a message
+                                            </Button>
                                             {
                                                 activateMessage && <SendMessage postID={postID} token={token} />
                                             }
@@ -86,7 +106,7 @@ const SinglePostView = ({ posts, token }) => {
         )
     } else {
         return (
-            <h1>Loading post...</h1>
+            <h1 className='postLoadingMessage'>Loading post...</h1>
         )
     }
 

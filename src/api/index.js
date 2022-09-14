@@ -79,7 +79,7 @@ export const getUserInfo = async (token) => {
   }
 }
 
-export const addNewPost = async (token, { title, description, price, location, willDeliver }) => {
+export const addNewPost = async (token, { title, description, price, location }) => {
   try {
     const response = await fetch(`${baseURL}/posts`, {
       method: "POST",
@@ -93,7 +93,6 @@ export const addNewPost = async (token, { title, description, price, location, w
           description: description,
           price: price,
           location: location,
-          willDeliver: willDeliver
         }
       })
     })
@@ -124,7 +123,7 @@ export const deletePost = async (token, _id) => {
   }
 }
 
-export const updatePost = async ({ token, title, description, price, location, willDeliver, _id }) => {
+export const updatePost = async ({ token, title, description, price, location, _id }) => {
   try {
     const response = await fetch(`${baseURL}/posts/${_id}`, {
       method: "PATCH",
@@ -138,7 +137,6 @@ export const updatePost = async ({ token, title, description, price, location, w
           description,
           price,
           location,
-          willDeliver
         }
       })
     })
