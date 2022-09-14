@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+    useState,
+    useEffect
+} from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
 import {
@@ -20,7 +23,7 @@ import {
     Login,
     NewPost,
     SinglePostView,
-    EditPost
+    EditPost,
 } from './components';
 import { CssBaseline } from '@mui/material';
 
@@ -80,7 +83,8 @@ const App = () => {
                     path='/posts'
                     element={<Posts
                         posts={posts}
-                        token={token} />} />
+                        token={token}
+                        fetchPosts={fetchPosts} />} />
                 <Route
                     exact path='/posts/new-post'
                     element={<NewPost

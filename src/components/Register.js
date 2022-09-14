@@ -18,7 +18,7 @@ const Register = ({ setToken, navigate }) => {
     } else {
       alert("Passwords do not match, please try again.")
     }
-  } 
+  }
 
   const handleSubmit = async () => {
     const results = await registerUser(username, password);
@@ -44,28 +44,42 @@ const Register = ({ setToken, navigate }) => {
           event.preventDefault();
           verifyPassword();
         }}>
-          <Grid align='center'><h2>Register New Account</h2></Grid>
-          <TextField 
-          style={{ marginBottom: '.75rem' }}
-          label="Username" 
-          placeholder="Enter username" 
-          fullWidth required 
-          onChange={(event) => setUsername(event.target.value)} />
-          <TextField 
-          style={{ marginBottom: '.75rem' }}
-          label="Password" 
-          placeholder="Enter password" 
-          type='password' 
-          fullWidth required 
-          onChange={(event) => setPassword(event.target.value)} />
-          <TextField 
-          style={{ marginBottom: '.75rem' }}
-          label="Confirm password" 
-          placeholder="Confirm password" 
-          type='password' 
-          fullWidth required 
-          onChange={(event) => setConfirmPassword(event.target.value)} />
-          <Button type='submit' color='primary' variant='contained' fullWidth>Register</Button>
+          <Grid
+            align='center'
+            className='loginAndRegisterHeading'>
+            <h2>Register New Account</h2>
+          </Grid>
+          <TextField
+            style={{ marginBottom: '.75rem' }}
+            label="Username"
+            placeholder="Enter username"
+            fullWidth required
+            onChange={(event) => setUsername(event.target.value)} />
+          <TextField
+            style={{ marginBottom: '.75rem' }}
+            label="Password"
+            placeholder="Enter password"
+            type='password'
+            fullWidth required
+            onChange={(event) => setPassword(event.target.value)} />
+          <TextField
+            style={{ marginBottom: '.75rem' }}
+            label="Confirm password"
+            placeholder="Confirm password"
+            type='password'
+            fullWidth required
+            onChange={(event) => setConfirmPassword(event.target.value)} />
+          <Button
+            type='submit'
+            color='primary'
+            variant='contained'
+            fullWidth
+            style={{
+              color: '#646C79',
+              backgroundColor: '#FB9039'
+            }}>
+            Register
+          </Button>
         </form>
       </Paper>
     </Grid>

@@ -44,7 +44,11 @@ const Login = ({ setToken, navigate }) => {
           event.preventDefault();
           verifyPassword();
         }}>
-          <Grid align='center'><h2>Sign In</h2></Grid>
+          <Grid
+            align='center'
+            className='loginAndRegisterHeading'>
+            <h2>Sign In</h2>
+          </Grid>
           <TextField
             style={{ marginBottom: '.75rem' }}
             label="Username"
@@ -65,7 +69,17 @@ const Login = ({ setToken, navigate }) => {
             type='password'
             fullWidth required
             onChange={(event) => setConfirmPassword(event.target.value)} />
-          <Button type='submit' color='primary' variant='contained' fullWidth>SIGN IN</Button>
+          <Button
+            type='submit'
+            color='primary'
+            variant='contained'
+            fullWidth
+            style={{
+              color: '#646C79',
+              backgroundColor: '#FB9039'
+            }}>
+            SIGN IN
+          </Button>
         </form>
       </Paper>
     </Grid>

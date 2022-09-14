@@ -8,7 +8,6 @@ import {
   Button
 } from '@mui/material'
 
-
 const EditPost = ({ posts, token, fetchPosts }) => {
   const { postID } = useParams();
   const [currentPost] = posts.filter(post => post._id === postID);
@@ -18,7 +17,6 @@ const EditPost = ({ posts, token, fetchPosts }) => {
   const [newDescription, setNewDescription] = useState(description);
   const [newPrice, setNewPrice] = useState(price);
   const [newLocation, setNewLocation] = useState(location);
-  // const [newWillDeliver, setNewWillDeliver] = useState(willDeliver);
 
   const navigate = useNavigate();
 
@@ -29,7 +27,6 @@ const EditPost = ({ posts, token, fetchPosts }) => {
       description: newDescription,
       price: newPrice,
       location: newLocation,
-      willDeliver: newWillDeliver,
       _id: postID
     }
     await updatePost(updatedPost);
@@ -50,7 +47,11 @@ const EditPost = ({ posts, token, fetchPosts }) => {
           fetchPosts();
           navigate('/posts');
         }}>
-          <Grid align='center'><h2>Edit post</h2></Grid>
+          <Grid
+            align='center'
+            className='editPostHeading'>
+            <h2>Edit post</h2>
+          </Grid>
           <TextField
             style={{ marginBottom: '.75rem' }}
             placeholder={title}
@@ -72,10 +73,13 @@ const EditPost = ({ posts, token, fetchPosts }) => {
             fullWidth required
             onChange={(event) => setNewLocation(event.target.value)} />
           <Button
-            style={{ marginBottom: '.75rem' }}
             type='submit'
             color='primary'
             variant='contained'
+            style={{
+              color: '#646C79',
+              backgroundColor: '#FB9039'
+            }}
             fullWidth>
             Update
           </Button>

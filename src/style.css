@@ -1,7 +1,7 @@
 .postContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .postHeader {
@@ -23,8 +23,8 @@
 
 .posts {
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-wrap: nowrap;
+  justify-items: space-between;
 }
 
 .postTitle {
@@ -32,14 +32,11 @@
   text-decoration: underline;
   font-weight: bolder;
   font-size: 1.3rem;
+  color: #FB9039;
 }
 
 .postInfo {
   font-size: 1.1rem
-}
-
-.postButtons {
-  margin: auto;
 }
 
 .searchBar {
@@ -53,28 +50,21 @@
   height: 3.5rem;
 }
 
+.newPostHeading{
+  color: #FB9039
+}
+
+.editPostHeading{
+  color: #FB9039
+}
+
+.loginAndRegisterHeading {
+  color: #FB9039
+}
+
 .profileHeading {
   text-align: center;
-}
-
-.header {
-  left: 0;
-  right: 0;
-  font-size: 2rem;
-  position: static;
-  padding: .05rem 1em;
-  background: rgb(66 133 244);
-  overflow: auto;
-  box-shadow: 0 0 12px -2px rgb(170, 162, 135)
-}
-
-.companyName {
-  float: left;
-  font-weight: bold;
-  font-size: 35px;
-  padding-left: 7px;
-  padding-right: 7px;
-  color: rgb(255, 255, 254);
+  color: #FB9039
 }
 
 .home {
@@ -84,6 +74,10 @@
   text-align: center;
 }
 
+.homeHeading {
+  color: #FB9039
+}
+
 .sendMessageButton {
   height: 3.4rem;
 }
@@ -91,6 +85,7 @@
 .messageHeaders {
   text-align: center;
   text-decoration: underline;
+  color: #FB9039
 }
 
 a:link {

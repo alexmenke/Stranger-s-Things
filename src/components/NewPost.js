@@ -7,13 +7,11 @@ import {
   Button,
 } from '@mui/material'
 
-
 const NewPost = ({ token, navigate, fetchPosts }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [location, setLocation] = useState('On Request');
-  // const [willDeliver, setWillDeliver] = useState(false);
 
   const addPost = async () => {
     const results = await addNewPost(token, { title, description, price, location });
@@ -34,10 +32,14 @@ const NewPost = ({ token, navigate, fetchPosts }) => {
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
-        <form className='newPostText' onSubmit={(event) => {
+        <form onSubmit={(event) => {
           event.preventDefault();
         }}>
-          <Grid align='center'><h2>Create a new post</h2></Grid>
+          <Grid
+            align='center'
+            className='newPostHeading'>
+            <h2>Create a new post</h2>
+          </Grid>
           <TextField
             style={{ marginBottom: '.75rem' }}
             label="Title"
@@ -64,8 +66,11 @@ const NewPost = ({ token, navigate, fetchPosts }) => {
             onChange={(event) => setLocation(event.target.value)} />
           <Button
             onClick={() => addPost()}
+            style={{
+              color: '#646C79',
+              backgroundColor: '#FB9039'
+            }}
             type='submit'
-            color='primary'
             variant='contained'
             fullWidth>
             Add Post

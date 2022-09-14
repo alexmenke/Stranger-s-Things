@@ -9,7 +9,6 @@ import {
     TextField,
 } from '@mui/material';
 import { deletePost, createMessage } from '../api';
-import styles from '../style.css';
 
 const SendMessage = ({ postID, token }) => {
     const [message, setMessage] = useState({ content: '' });
@@ -35,7 +34,10 @@ const SendMessage = ({ postID, token }) => {
             <Button
                 className='sendMessageButton'
                 variant='contained'
-                type='submit'>
+                type='submit'
+                style={{
+                    backgroundColor: '#FB9039',
+                    color: '#646C79'}}>
                 Send
             </Button>
         </form>
@@ -62,45 +64,47 @@ const SinglePostView = ({ posts, token }) => {
                         <p className='postInfo'>Description: {description}</p>
                         <p className='postInfo'>Price: {price}</p>
                         <p className='postInfo'>Location: {location}</p>
-                    </CardContent>
-                    <CardActions>
-                        {
-                            isAuthor ? (
-                                <>
-                                    <Link to={`/posts`}>
-                                        <Button>
-                                            View All
-                                        </Button>
-                                    </Link>
-                                    <Link to={`/posts`}>
-                                        <Button
-                                            onClick={() => deletePost(token, _id)}>
-                                            Delete
-                                        </Button>
-                                    </Link>
-                                </>
-                            ) : (
-                                <>
-                                    <Link to={`/posts`}>
-                                        <Button>
-                                            View All
-                                        </Button>
-                                    </Link>
-                                    {token &&
-                                        <>
-                                            <Button
-                                                onClick={() => setActivateMessage(!activateMessage)}>
-                                                Write a message
+                        <CardActions>
+                            {
+                                isAuthor ? (
+                                    <>
+                                        <Link to={`/posts`}>
+                                            <Button style={{color: '#FB9039'}}>
+                                                View All
                                             </Button>
-                                            {
-                                                activateMessage && <SendMessage postID={postID} token={token} />
-                                            }
-                                        </>
-                                    }
-                                </>
-                            )
-                        }
-                    </CardActions>
+                                        </Link>
+                                        <Link to={`/posts`}>
+                                            <Button
+                                                onClick={() => deletePost(token, _id)}
+                                                style={{color: '#FB9039'}}>
+                                                Delete
+                                            </Button>
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to={`/posts`}>
+                                            <Button style={{color: '#FB9039'}}>
+                                                View All
+                                            </Button>
+                                        </Link>
+                                        {token &&
+                                            <>
+                                                <Button
+                                                    onClick={() => setActivateMessage(!activateMessage)}
+                                                    style={{color: '#FB9039'}}>
+                                                    Write a message
+                                                </Button>
+                                                {
+                                                    activateMessage && <SendMessage postID={postID} token={token} />
+                                                }
+                                            </>
+                                        }
+                                    </>
+                                )
+                            }
+                        </CardActions>
+                    </CardContent>
                 </Card >
             </Paper>
         )

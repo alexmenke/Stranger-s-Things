@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Paper,
@@ -7,11 +7,11 @@ import {
   CardContent,
   CardActions,
   TextField,
+  Grid,
 } from '@mui/material';
 import styles from '../style.css';
 
-
-const Posts = ({ posts, token }) => {
+const Posts = ({ posts, token, fetchPosts }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const postMatches = (post, string) => {
@@ -28,40 +28,55 @@ const Posts = ({ posts, token }) => {
   const paperStyle = {
     padding: 20,
     width: 350,
-    margin: '20px auto'
+    margin: '1rem auto'
   }
 
-  // if (postsToDisplay.length) {
+  useEffect(() => {
+    fetchPosts();
+}, [token])
+
   return (
     <div className='postContainer'>
-      <div className='postHeader'>
-        <form onSubmit={(event) => {
-          event.preventDefault();
-        }}>
-          <TextField
-            style={{ margin: '.50rem' }}
-            className='searchBar'
-            type='text'
-            placeholder='Enter search here...'
-            onChange={(event) => setSearchTerm(event.target.value)}>
-          </TextField>
-        </form>
+      <Grid
+        container
+        gap={'2rem'}
+        direction="row"
+        alignItems="flex-start"
+        justifyContent='center'
+        justify='flex-start'>
+        <div className='postHeader'>
+          <form onSubmit={(event) => {
+            event.preventDefault();
+          }}>
+            <TextField
+              style={{ margin: '.50rem' }}
+              className='searchBar'
+              type='text'
+              placeholder='Enter search here...'
+              onChange={(event) => setSearchTerm(event.target.value)}>
+            </TextField>
+          </form>
 
-        {
-          token ? (
-            <Link to='/posts/new-post'>
-              <Button
-                style={{ margin: '.50rem' }}
-                className='newPostButton'
-                variant='contained'>
-                Create New Post
-              </Button>
-            </Link>
-          ) : (
-            <p><Link to='/register'>Register</Link> or <Link to='/login'>login</Link> to create a post.</p>
-          )
-        }
-      </div>
+          {
+            token ? (
+              <Link to='/posts/new-post'>
+                <Button
+                  style={{
+                    margin: '.50rem',
+                    backgroundColor: '#FB9039',
+                    color: '#646C79'
+                  }}
+                  className='newPostButton'
+                  variant='contained'>
+                  Create New Post
+                </Button>
+              </Link>
+            ) : (
+              <p><Link to='/register'>Register</Link> or <Link to='/login'>login</Link> to create a post.</p>
+            )
+          }
+        </div>
+      </Grid>
 
       {
         postsToDisplay.map((post) => {
@@ -69,55 +84,55 @@ const Posts = ({ posts, token }) => {
           return (
             <div className='posts'
               key={_id}>
-              <Paper elevation={10} style={paperStyle}>
-                <Card
-                  className={styles.singlePost}>
-                  <CardContent>
-                    <h3 className='postTitle'>{title}</h3>
-                    <p className='postInfo'>Description: {description}</p>
-                    <p className='postInfo'>Price: {price}</p>
-                    <p className='postInfo'>Location: {location}</p>
-                  </CardContent>
-                  <CardActions>
-                    {
-                      isAuthor ? (
-                        <>
-                          <Link to={`/posts/edit-post/${_id}`}>
-                            <Button className='postButtons'>
-                              Edit Post
-                            </Button>
-                          </Link>
-                          <Link to={`/posts/${_id}`}>
-                            <Button className='postButtons'>
-                              View Post
-                            </Button>
-                          </Link>
-                        </>
-                      ) : (
-                        <Link to={`/posts/${_id}`}>
-                          <Button className='postButtons'>
-                            View Post
-                          </Button>
-                        </Link>
-                      )
-                    }
-                  </CardActions>
-                </Card>
-              </Paper>
+              <Grid
+                container
+                gap={'20rem'}
+                direction="row"
+                alignItems="flex-start"
+                justifyContent='center'
+                justify='flex-start'>
+                <Paper elevation={10} style={paperStyle}>
+                  <Card
+                    className={styles.singlePost}>
+                    <CardContent>
+                      <h3 className='postTitle'>{title}</h3>
+                      <p className='postInfo'>Description: {description}</p>
+                      <p className='postInfo'>Price: {price}</p>
+                      <p className='postInfo'>Location: {location}</p>
+                      <CardActions>
+                        {
+                          isAuthor ? (
+                            <>
+                              <Link to={`/posts/edit-post/${_id}`}>
+                                <Button style={{color: '#FB9039'}}>
+                                  Edit Post
+                                </Button>
+                              </Link>
+                              <Link to={`/posts/${_id}`}>
+                                <Button style={{color: '#FB9039'}}>
+                                  View Post
+                                </Button>
+                              </Link>
+                            </>
+                          ) : (
+                            <Link to={`/posts/${_id}`}>
+                              <Button style={{color: '#FB9039'}}>
+                                View Post
+                              </Button>
+                            </Link>
+                          )
+                        }
+                      </CardActions>
+                    </CardContent>
+                  </Card>
+                </Paper>
+              </Grid>
             </div>
           )
         })
       }
     </div>
   )
-  // } else {
-  //   return (
-  //     <div className='postLoadingMessage'>
-  //     <h1>Loading posts...</h1>
-  //     </div>
-  //   )
-  // }
-
 }
 
 export default Posts;
